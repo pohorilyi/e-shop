@@ -1,7 +1,5 @@
 package com.bobbbaich.model;
 
-import org.hibernate.validator.constraints.URL;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,17 +14,16 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long id;
-    @Column(name = "product_name")
-    private String name;
-    @Column(name = "product_cost")
-    private Double cost;
-    @Column(name = "product_description")
-    private String description;
-    @Column(name = "product_type")
-    private ProductType productType;
-    @URL
-    @Column(name = "product_picture_url")
-    private String pictureUrl;
+    @Column(name = "product_self_cost")
+    private Double self_cost;
+    @Column(name = "product_count")
+    private int productCount;
+    @Column(name = "product_size")
+    @Enumerated(EnumType.STRING)
+    private ProductSize productSize;
+    @ManyToOne
+    @JoinColumn(name = "product_card_products_id", foreignKey = @ForeignKey(name = "product_card_products_id_fk"))
+    private ProductCard productCard;
     @ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
     private List<Purchase> purchases = new ArrayList<>();
 
@@ -36,36 +33,40 @@ public class Product {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Double getSelf_cost() {
+        return self_cost;
     }
 
-    public Double getCost() {
-        return cost;
+    public void setSelf_cost(Double self_cost) {
+        this.self_cost = self_cost;
     }
 
-    public void setCost(Double cost) {
-        this.cost = cost;
+    public int getProductCount() {
+        return productCount;
     }
 
-    public String getDescription() {
-        return description;
+    public void setProductCount(int productCount) {
+        this.productCount = productCount;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public ProductSize getProductSize() {
+        return productSize;
     }
 
-    public String getPictureUrl() {
-        return pictureUrl;
+    public void setProductSize(ProductSize productSize) {
+        this.productSize = productSize;
     }
 
-    public void setPictureUrl(String pictureUrl) {
-        this.pictureUrl = pictureUrl;
+    public ProductCard getProductCard() {
+        return productCard;
+    }
+
+    public void setProductCard(ProductCard productCard) {
+        this.productCard = productCard;
     }
 
     public List<Purchase> getPurchases() {
@@ -74,13 +75,5 @@ public class Product {
 
     public void setPurchases(List<Purchase> purchases) {
         this.purchases = purchases;
-    }
-
-    public ProductType getProductType() {
-        return productType;
-    }
-
-    public void setProductType(ProductType productType) {
-        this.productType = productType;
     }
 }

@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="com.bobbbaich.model.ProductType" %><%--
   Created by IntelliJ IDEA.
   User: Богдан
   Date: 16.01.2016
@@ -63,10 +64,10 @@
                     <ul class="dropdown-menu">
                         <li><a href="/products/gi">Gi</a></li>
                         <li><a href="/products/ammunition">Ammunition</a></li>
-                        <li><a href="/products/belt">Belt</a></li>
+                        <li><a href="/products/cap">Cap</a></li>
                         <li><a href="/products/rashgard">Rashgard</a></li>
-                        <li><a href="/products/caps">Caps</a></li>
-                        <li><a href="/products/all_categories">All categories</a></li>
+                        <li><a href="/products/t_shirt  ">T-Shirt</a></li>
+                        <li><a href="/products/#">All categories</a></li>
                     </ul>
                 </li>
                 <li><a href="#">Deals</a></li>
@@ -83,15 +84,11 @@
 
 <div class="container">
     <div class="row">
-        <c:forEach items="${products}" var="product">
         <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">${product.name}</div>
-                <div class="panel-body"><img src=${product.pictureUrl} class="img-responsive" style="width:100%" alt="Image"></div>
-                <div class="panel-footer">Cost: ${product.cost}</div>
-            </div>
+            <div class="panel-heading">${item.name}</div>
+            <div class="panel-body"><img src=${item.pictureUrl} class="img-responsive" style="width:100%" alt="Image"></div>
+            <div class="panel-footer">Cost: ${item.cost}</div>
         </div>
-        </c:forEach>
     </div>
 </div>
 

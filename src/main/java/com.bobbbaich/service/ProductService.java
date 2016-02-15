@@ -1,7 +1,6 @@
 package com.bobbbaich.service;
 
 import com.bobbbaich.model.Product;
-import com.bobbbaich.model.ProductType;
 
 import java.util.List;
 
@@ -10,8 +9,8 @@ import java.util.List;
  */
 public interface ProductService {
     public Product saveProduct(Product product);
-    public Product findProductrById(Long id);
-    public List<Product> findProductsByProductType(ProductType type);
+    public Product findProductById(Long id);
     public List<Product> findAllProducts();
     public Product deleteProduct(Long id);
+    public  List<Product> findRandomProducts();
 }

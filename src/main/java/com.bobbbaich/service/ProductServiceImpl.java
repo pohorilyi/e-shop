@@ -1,12 +1,12 @@
 package com.bobbbaich.service;
 
 import com.bobbbaich.model.Product;
-import com.bobbbaich.model.ProductType;
 import com.bobbbaich.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,16 +24,16 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public Product findProductrById(Long id) {
+    public Product findProductById(Long id) {
         Product product = productRepository.findOne(id);
         return product;
     }
 
-    @Override
-    public List<Product> findProductsByProductType(ProductType type) {
-        List<Product> products = productRepository.findProductsByProductType(type);
-        return products;
-    }
+//    @Override
+//    public List<Product> findProductsByProductType(ProductType type) {
+//        List<Product> products = productRepository.findProductsByProductType(type);
+//        return products;
+//    }
 
     @Override
     public List<Product> findAllProducts() {
@@ -46,5 +46,12 @@ public class ProductServiceImpl implements ProductService{
         Product product = productRepository.findOne(id);
         productRepository.delete(id);
         return product;
+    }
+
+    @Override
+    public List<Product> findRandomProducts() {
+        List<Product> products = productRepository.findAll();
+        Collections.shuffle(products);
+        return products;
     }
 }
